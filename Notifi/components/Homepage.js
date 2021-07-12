@@ -6,6 +6,7 @@ function Homepage(props) {
     // Backend data being sent to homepage
     const [backendData, setBackendData] = useState([]);
 
+    // Change to local ip
     useEffect(() => {
         fetch('http://192.168.0.10:3000/get', {
             method:'GET'
@@ -16,15 +17,6 @@ function Homepage(props) {
         })
 
     }, []);
-
-    const renderData = (item) => {;
-        return (
-            <View>
-                <Text>{item.text1}</Text>
-                <Text>{item.text2}</Text>
-            </View>
-        )
-    }
 
     return (
         <View>
