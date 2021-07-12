@@ -4,8 +4,8 @@ Mac Hacksprint Project
 
 ## Problems
 
-Check-ins too inconvenient
-Government data hard to interpret with user’s movement
+1. Check-ins too inconvenient
+2. Government data hard to interpret with user’s movement
 
 ## Solutions
 
