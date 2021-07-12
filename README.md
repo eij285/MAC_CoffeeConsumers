@@ -34,21 +34,23 @@ If a person who was at a venue is diagnosed with COVID, they will also turn on t
 The information the user gets with the notification will be the following: 
 - Which venue
 - What times the infected person was at the store (which should be noted by the program from when they stayed for more than 2min to when they left the range of the device.).
-- 
+
 Note: this should stack with the individual user notification so users get two notifications.
 
 #### With public transport:
 All forms of public transport will have their own device. Works similar to venue devices. Trains will need a device for each carriage. However, this method requires the government to implement the app. This might not occur immediately or at all. 
 
 If not, we will just have to rely on the individual user interactions with other users for this case. Or we use opal cards?? But if we get opal data, just get govt to attach a device.
-General description of the information function (the information given to the users):
+
+### General description of the information function (the information given to the users):
 What does the app do: This component of the app aims to make all government data as digestible as possible. A lot of our tracking function components require a large scale of users. If this does not occur, this Government information simplification will be the core feature of our app. Also, give all sources of our govt data.
 
 Note: a core philosophy of this app is to make it as user friendly and digestible as possible to users (e.g., elderly). Too much information will clutter the app and make it difficult to interpret information and navigate the app.
 
-Govt Data: “COVID near me” Data:
-Overlay “COVID near me” map? 
-This might make it cluttered? (This is all on a tiny mobile device to consider user experience) Maybe you need a button to overlay the map on top and if you want to turn it off, just press the button again.
+<i>Govt Data: “COVID near me” Data:</i>
+Overlay “COVID near me” map?
+
+	This might make it cluttered? (This is all on a tiny mobile device to consider user experience) Maybe you need a button to overlay the map on top and if you want to turn it off, just press the button again.
 
 Govt Data: “Health NSW” Data: 
 Translate all the data on the Health NSW website table into a visual representation on the map.
