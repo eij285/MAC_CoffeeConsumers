@@ -9,16 +9,16 @@ Mac Hacksprint Project
 
 ## Solutions
 
-Automate check-in process 
-Real-time location tracking in combination with venue check-ins to keep covid alerts/information updated 
+1. Automate check-in process 
+2. Real-time location tracking in combination with venue check-ins to keep covid alerts/information updated 
 
 ## General description of the tracking function
 
-What does the app do: 
+### What does the app do: 
 Once given permission, the app tracks each user's phone and where they have been for the duration that the tracking function was turned on.
 
-What does this tracking function do:
-With other users:
+### What does this tracking function do:
+#### With other users:
 The tracking function will note down if you have been near (within 10 meters?) another person with the tracking function turned on for more than 1 minute. If a user you pass has been diagnosed with COVID, they will press a button on their app that tells the program that they have COVID (the COVID switch). This will send a notification to all users that have been near the infected person for more than a minute and tell them to isolate. (Need this because all COVID cases are reported in hindsight after contact)
 
 The information the user gets with the notification will be the following: 
@@ -26,7 +26,7 @@ The information the user gets with the notification will be the following:
 	What time it occurred.
 	How long they were in close proximity with the infected person.
 
-With venues:
+#### With venues:
 Each venue can also have a device which should be placed within the middle of the store. If a user is within the range of the device for more than 2 minutes, it is also noted down, similar to if they passed another user. The range for venues might be larger than the 10m range of user phones. If a user leaves a store, the program will note when they left the range of the venue device.
 
 If a person who was at a venue is diagnosed with COVID, they will also turn on the “COVID switch”. This will notify all visitors of the store on that day with a notification telling them a venue they have been to has a confirmed case visitor. 
@@ -36,7 +36,7 @@ The information the user gets with the notification will be the following:
 What times the infected person was at the store (which should be noted by the program from when they stayed for more than 2min to when they left the range of the device.).
 	Note: this should stack with the individual user notification so users get two notifications.
 
-With public transport:
+#### With public transport:
 All forms of public transport will have their own device. Works similar to venue devices. Trains will need a device for each carriage. However, this method requires the government to implement the app. This might not occur immediately or at all. 
 
 If not, we will just have to rely on the individual user interactions with other users for this case. Or we use opal cards?? But if we get opal data, just get govt to attach a device.
