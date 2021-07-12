@@ -15,10 +15,13 @@ Mac Hacksprint Project
 ## General description of the tracking function
 
 ### What does the app do: 
+
 Once given permission, the app tracks each user's phone and where they have been for the duration that the tracking function was turned on.
 
 ### What does this tracking function do:
+
 #### With other users:
+
 The tracking function will note down if you have been near (within 10 meters?) another person with the tracking function turned on for more than 1 minute. If a user you pass has been diagnosed with COVID, they will press a button on their app that tells the program that they have COVID (the COVID switch). This will send a notification to all users that have been near the infected person for more than a minute and tell them to isolate. (Need this because all COVID cases are reported in hindsight after contact)
 
 The information the user gets with the notification will be the following: 
@@ -27,6 +30,7 @@ The information the user gets with the notification will be the following:
 - How long they were in close proximity with the infected person.
 
 #### With venues:
+
 Each venue can also have a device which should be placed within the middle of the store. If a user is within the range of the device for more than 2 minutes, it is also noted down, similar to if they passed another user. The range for venues might be larger than the 10m range of user phones. If a user leaves a store, the program will note when they left the range of the venue device.
 
 If a person who was at a venue is diagnosed with COVID, they will also turn on the “COVID switch”. This will notify all visitors of the store on that day with a notification telling them a venue they have been to has a confirmed case visitor. 
@@ -38,25 +42,30 @@ The information the user gets with the notification will be the following:
 Note: this should stack with the individual user notification so users get two notifications.
 
 #### With public transport:
+
 All forms of public transport will have their own device. Works similar to venue devices. Trains will need a device for each carriage. However, this method requires the government to implement the app. This might not occur immediately or at all. 
 
 If not, we will just have to rely on the individual user interactions with other users for this case. Or we use opal cards?? But if we get opal data, just get govt to attach a device.
 
 ### General description of the information function (the information given to the users):
+
 What does the app do: This component of the app aims to make all government data as digestible as possible. A lot of our tracking function components require a large scale of users. If this does not occur, this Government information simplification will be the core feature of our app. Also, give all sources of our govt data.
 
 Note: a core philosophy of this app is to make it as user friendly and digestible as possible to users (e.g., elderly). Too much information will clutter the app and make it difficult to interpret information and navigate the app.
 
-<i>Govt Data: “COVID near me” Data:</i>
+#### Govt Data: “COVID near me” Data:
+
 Overlay “COVID near me” map?
 
-	This might make it cluttered? (This is all on a tiny mobile device to consider user experience) Maybe you need a button to overlay the map on top and if you want to turn it off, just press the button again.
+> This might make it cluttered? (This is all on a tiny mobile device to consider user experience) Maybe you need a button to overlay the map on top and if you want to turn it off, just press the button again.
 
-Govt Data: “Health NSW” Data: 
+#### Govt Data: “Health NSW” Data: 
+
 Translate all the data on the Health NSW website table into a visual representation on the map.
-Create clickable nodes on the map to show what the table says for that exact location.
+
+> Create clickable nodes on the map to show what the table says for that exact location.
 	
-If the user is physically approaching one of these nodes while the tracking feature is turned on, the user will get a notification warning them they are approaching one of these hotspots.
+> If the user is physically approaching one of these nodes while the tracking feature is turned on, the user will get a notification warning them they are approaching one of these hotspots.
 
 Clusters:
 Same concept as “Health NSW” Data section but idk where cluster information is from.
