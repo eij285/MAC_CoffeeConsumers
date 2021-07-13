@@ -3,7 +3,7 @@ Mac Hacksprint Project
 
 ## Contents
 
-[[_TOC_]]
+[TOC]
 
 ## Problems
 
