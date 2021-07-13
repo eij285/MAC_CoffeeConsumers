@@ -2,18 +2,29 @@
 Mac Hacksprint Project
 
 ## Contents
+[Problems](#problems)  
+[Solutions](#solutions)  
+[General description of the tracking function](#desc)  
+[Changes](#changes)  
+[Features](#features)  
+[Future features](#future)  
+[Using git](#git) 
 
-[TOC]
+<a name="problems"/>
 
 ## Problems
 
 1. Check-ins too inconvenient
 2. Government data hard to interpret with user’s movement
 
+<a name="problems"/>
+
 ## Solutions
 
 1. Automate check-in process 
 2. Real-time location tracking in combination with venue check-ins to keep covid alerts/information updated 
+
+<a name="desc"/>
 
 ## General description of the tracking function
 
@@ -106,6 +117,8 @@ COVID19 has shown that it is now more important than ever to have strict and eff
 - This is part of selling the problem. Need more on selling the problem
 - Say how features are adjustable to match the behaviour of future viruses
 
+<a name="changes"/>
+
 ## Changes
 
 * Removed tracking 
@@ -115,6 +128,7 @@ COVID19 has shown that it is now more important than ever to have strict and eff
 * In future (with Govt coop):
 * Immediate COVID diagnosis to streamline investigations
 
+<a name="features"/>
 
 ## Features
 
@@ -129,11 +143,15 @@ COVID19 has shown that it is now more important than ever to have strict and eff
 * Venue intersection
 * Approaching hotspot
 
+<a name="future"/>
+
 ## Future features
 
 * Opal
 * Immediate govt data for COVID diagnosis “COVID switch”
 * Route planning/ receiving notifications when approaching a covid hotspot 
+
+<a name="git"/>
 
 ## Using git
 
