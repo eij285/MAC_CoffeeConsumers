@@ -139,14 +139,14 @@ COVID19 has shown that it is now more important than ever to have strict and eff
 If you are not on your branch, use git checkout <i>BranchName</i> to go to the correct branch
 
 	git branch
-	git checkout <i>DevelopmentBranchName</i>
+	git checkout DevelopmentBranchName
 
 ### Creating a new branch:
 
 You want to create a new branch when working on a feature that is not part of your current branches. To do this, ensure you are on the main branch before creating a new branch, as it will copy the history of the branch you are currently on into the new branch (i.e duplicates the branch).
 
 	git checkout main
-	git checkout -b <i>DevelopmentBranchName</i>
+	git checkout -b DevelopmentBranchName
 	
 This will automatically checkout to your new branch.
 
@@ -155,14 +155,14 @@ This will automatically checkout to your new branch.
 Every time you finish or work on some code, you want to stage a commit. This is essentially creating a save file of your current work onto the branch. To do this, use git status to check what files are not been tracked, then git add them and finally git commit.
 
 	git status
-	git add <i>AnyRelevantFilesSeparatedBySpace</i>
-	git commit -m "<i>Message detailing what you did in this commit</i>"
+	git add AnyRelevantFilesSeparatedBySpace
+	git commit -m "Message detailing what you did in this commit"
 	
 Do this regularly and ensure you are on your development branch before committing. Once you are ready to send your changes to the online repo on the GitHub cloud, run git push.
 
 If this is the first time you are pushing this branch, use the --set-upstream (or the -u) flag:
 
-	git push --set-upstream origin <i>DevelopmentBranchName</i>
+	git push --set-upstream origin DevelopmentBranchName
 	
 Otherwise you can simply use git push:
 
@@ -179,7 +179,7 @@ Do this by checking out to the main branch and calling git pull.
 	
 This updates your local copy of the main branch from the cloud copy. Then merge this new local main branch into your development branch.
 
-	git checkout <i>DevelopmentBranchName</i>
+	git checkout DevelopmentBranchName
 	git merge main
 	
 If you have merge conflicts at this point make sure to get it checked by the person who commited the change conflicting yours. 
@@ -187,7 +187,7 @@ If you have merge conflicts at this point make sure to get it checked by the per
 Before merging the code to main, you should make a merge request and have someone else check that your code is satisfactory and not potentially harmful to the repo (the review process). Once it has been approved, you can merge it using git merge as below.
 
 	git checkout main
-	git merge <i>DevelopmentBranchName</i>
+	git merge DevelopmentBranchName
 
 <b>NOTE:</b> in general working in different files should not cause any merge conflicts. If you do want to work on the same file, it may make more sense to create a copy of the file and combine them manually.
 
