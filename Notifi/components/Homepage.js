@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 function Homepage(props) {
 
     // Backend data being sent to homepage
-    const [backendData, setBackendData] = useState([]);
+    const [data, setData] = useState([]);
 
     // Change to local ip
     useEffect(() => {
@@ -12,8 +12,9 @@ function Homepage(props) {
             method:'GET'
         })
         .then(resp => resp.json())
-        .then(article => {
-            setBackendData(article)
+        .then(data => {
+            console.log(data)
+            setData(data)
         })
 
     }, []);
@@ -22,7 +23,7 @@ function Homepage(props) {
         <View>
             <Text>Hello Coffee Consumers!</Text>
             <Text>This is the app {props.name}</Text>
-            <Text>Backend says '{backendData.text1} {backendData.text2}'</Text>
+            <Text>Backend says '{data.text1} {data.text2}'</Text>
         </View>
     )
 }
