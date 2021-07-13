@@ -1,6 +1,9 @@
 # MAC_CoffeeConsumers
 Mac Hacksprint Project
 
+## Contents
+
+[[_TOC_]]
 
 ## Problems
 
