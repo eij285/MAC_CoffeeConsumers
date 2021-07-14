@@ -1,32 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { useFonts } from 'expo-font';
 
 function Homepage(props) {
-
-    // Backend data being sent to homepage
-    const [data, setData] = useState([]);
-
-    // Change to local ip
-    useEffect(() => {
-        fetch('http://192.168.0.10:3000/get', {
-            method:'GET'
-        })
-        .then(resp => resp.json())
-        .then(data => {
-            console.log(data)
-            setData(data)
-        })
-
-    }, []);
+    const [text, setText] = useState('');
 
     return (
         <View>
-            <Text>Hello Coffee Consumers!</Text>
-            <Text>This is the app {props.name}</Text>
-            <Text>Backend says '{data.text1} {data.text2}'</Text>
+            <Text style={styles.textStyle}>Hello there,</Text>
+            <Text style={styles.textStyle}>what's your name?</Text>
+            <TextInput
+                style={{height: 40}}
+                placeholder="Tap to start typing"
+                onChangeText={text => setText(text)}
+                defaultValue={text}
+            />
         </View>
     )
 }
 
-
 export default Homepage;
+
+const styles = StyleSheet.create({
+    textStyle: {
+        fontFamily: 'NimbusSanL-Regu',
+        fontStyle: 'normal',
+        fontSize: 36,
+        fontWeight: '700'
+    },
+  });
