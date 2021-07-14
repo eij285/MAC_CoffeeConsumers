@@ -1,16 +1,30 @@
 # MAC_CoffeeConsumers
 Mac Hacksprint Project
 
+## Contents
+[Problems](#problems)  
+[Solutions](#solutions)  
+[General description of the tracking function](#desc)  
+[Changes](#changes)  
+[Features](#features)  
+[Future features](#future)  
+[Using git](#git) 
+
+<a name="problems"/>
 
 ## Problems
 
 1. Check-ins too inconvenient
 2. Government data hard to interpret with user’s movement
 
+<a name="problems"/>
+
 ## Solutions
 
 1. Automate check-in process 
 2. Real-time location tracking in combination with venue check-ins to keep covid alerts/information updated 
+
+<a name="desc"/>
 
 ## General description of the tracking function
 
@@ -103,6 +117,8 @@ COVID19 has shown that it is now more important than ever to have strict and eff
 - This is part of selling the problem. Need more on selling the problem
 - Say how features are adjustable to match the behaviour of future viruses
 
+<a name="changes"/>
+
 ## Changes
 
 * Removed tracking 
@@ -112,6 +128,7 @@ COVID19 has shown that it is now more important than ever to have strict and eff
 * In future (with Govt coop):
 * Immediate COVID diagnosis to streamline investigations
 
+<a name="features"/>
 
 ## Features
 
@@ -126,14 +143,74 @@ COVID19 has shown that it is now more important than ever to have strict and eff
 * Venue intersection
 * Approaching hotspot
 
+<a name="future"/>
+
 ## Future features
 
 * Opal
 * Immediate govt data for COVID diagnosis “COVID switch”
 * Route planning/ receiving notifications when approaching a covid hotspot 
 
+<a name="git"/>
 
+## Using git
 
+<b>Before doing any work on the git repository, always use git branch to check that you are not on the ‘main’ branch.</b>
+
+If you are not on your branch, use git checkout <i>BranchName</i> to go to the correct branch
+
+	git branch
+	git checkout DevelopmentBranchName
+
+### Creating a new branch:
+
+You want to create a new branch when working on a feature that is not part of your current branches. To do this, ensure you are on the main branch before creating a new branch, as it will copy the history of the branch you are currently on into the new branch (i.e duplicates the branch).
+
+	git checkout main
+	git checkout -b DevelopmentBranchName
+	
+This will automatically checkout to your new branch.
+
+### Working on the branch:
+
+Every time you finish or work on some code, you want to stage a commit. This is essentially creating a save file of your current work onto the branch. To do this, use git status to check what files are not been tracked, then git add them and finally git commit.
+
+	git status
+	git add AnyRelevantFilesSeparatedBySpace
+	git commit -m "Message detailing what you did in this commit"
+	
+Do this regularly and ensure you are on your development branch before committing. Once you are ready to send your changes to the online repo on the GitHub cloud, run git push.
+
+If this is the first time you are pushing this branch, use the --set-upstream (or the -u) flag:
+
+	git push --set-upstream origin DevelopmentBranchName
+	
+Otherwise you can simply use git push:
+
+	git push
+	
+### Merging the branch to main:
+
+Once you have finished working on the branch and are ready to merge your branch with main, you should first ensure that your branch is up to date with other people's work. <b>This is important as failing to do so may result in merge conflicts.</b>
+
+Do this by checking out to the main branch and calling git pull.
+
+	git checkout main
+	git pull
+	
+This updates your local copy of the main branch from the cloud copy. Then merge this new local main branch into your development branch.
+
+	git checkout DevelopmentBranchName
+	git merge main
+	
+If you have merge conflicts at this point make sure to get it checked by the person who commited the change conflicting yours. 
+
+Before merging the code to main, you should make a merge request and have someone else check that your code is satisfactory and not potentially harmful to the repo (the review process). Once it has been approved, you can merge it using git merge as below.
+
+	git checkout main
+	git merge DevelopmentBranchName
+
+<b>NOTE:</b> in general working in different files should not cause any merge conflicts. If you do want to work on the same file, it may make more sense to create a copy of the file and combine them manually.
 
 
 
