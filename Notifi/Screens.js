@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Button, Image, TouchableOpacity, TextInput } from "react-native";
 
 
 //<Image source={require('./Notifi_Icon.jpg')} />
@@ -17,6 +17,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     marginVertical: 10,
     borderRadius: 5
+  },
+  registerTextStyle: {
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 32
   }
 });
 
@@ -42,11 +47,36 @@ export const LoadingScreen = ({ navigation }) => {
 export const SignUp = ({ navigation }) => {
   return (
     <ScreenContainer>
-      <Text>Hello there,</Text>
-      <Button 
-        title="Continue" 
-        onPress={() => navigation.push("MainPage")} 
-      />
+      <View style={[styles.container, {
+        flexDirection: "column",
+        alignItems: 'flex-start'
+      }]}>
+        <View>
+          <Text style={styles.registerTextStyle}>Hello there,</Text>
+          <Text style={styles.registerTextStyle}>what's your name?</Text>
+          <TextInput
+            style={{height: 40, fontSize: 18}}
+            placeholder="Tap to start typing"
+            onSubmitEditing={event => console.log('Text A has been submitted')}
+          />
+        </View>
+        <View style={{paddingVertical: 10}}>
+          <Text style={styles.registerTextStyle}>Hi insertName,</Text>
+          <Text style={styles.registerTextStyle}>what's your address?</Text>
+          <TextInput
+            style={{height: 40, fontSize: 18}}
+            placeholder="Tap to start typing"
+            onSubmitEditing={event => console.log('Text B has been submitted')}
+          />
+        </View>
+
+        <View>
+          <Button 
+              title="Continue" 
+              onPress={() => navigation.push("MainPage")} 
+          />
+        </View>
+      </View>
 
     </ScreenContainer>
   );
