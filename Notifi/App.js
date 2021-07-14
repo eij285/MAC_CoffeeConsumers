@@ -8,6 +8,8 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import Icon from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FlatButton from './Screens';
+//import MapView from 'react-native-maps';
+
 
 
 
