@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MapView, { Marker } from 'react-native-maps';
-import { View, Text, StyleSheet, Button, Image, TouchableOpacity, Dimensions } from "react-native";
+import { View, Text, TextInput, StyleSheet, Button, Image, TouchableOpacity, Dimensions } from "react-native";
 
 
 import { Location, Permissions } from 'expo';
@@ -41,6 +41,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     marginVertical: 10,
     borderRadius: 5
+  },
+  registerTextStyle: {
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 32
   }
 });
 
@@ -64,13 +69,62 @@ export const LoadingScreen = ({ navigation }) => {
 
   
 export const SignUp = ({ navigation }) => {
+
+  // const [responseData, setResponseData] = useState([]);
+  // const data = { 
+  //   text1: 'hello',
+  //   text2: 'world'
+  // };
+
+  // useEffect(() => {
+  //   fetch('http://192.168.0.10:3000/post', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(data)
+  //   })
+  //   .then(resp => resp.json())
+  //   .then(newData => {
+  //     setResponseData(newData)
+  //   })
+  // }, []);
+
   return (
     <ScreenContainer>
-      <Text>Hello there,</Text>
-      <Button 
-        title="Continue" 
-        onPress={() => navigation.push("MainPage")} 
-      />
+      <View style={[styles.container, {
+        flexDirection: "column",
+        alignItems: 'flex-start'
+      }]}>
+        <View>
+          <Text style={styles.registerTextStyle}>Hello there,</Text>
+          <Text style={styles.registerTextStyle}>what's your name?</Text>
+          <TextInput
+            style={{height: 40, fontSize: 18}}
+            placeholder="Tap to start typing"
+            onSubmitEditing={event => console.log('Text A has been submitted')}
+          />
+        </View>
+        <View style={{paddingVertical: 10}}>
+          <Text style={styles.registerTextStyle}>Hi insertName,</Text>
+          <Text style={styles.registerTextStyle}>what's your address?</Text>
+          <TextInput
+            style={{height: 40, fontSize: 18}}
+            placeholder="Tap to start typing"
+            onSubmitEditing={event => console.log('Text B has been submitted')}
+          />
+        </View>
+        {/* <View>
+          <Text>Response data '{responseData.text1} + {responseData.text2}'</Text>
+        </View> */}
+
+        <View>
+          <Button 
+              title="Continue" 
+              onPress={() => navigation.push("MainPage")} 
+          />
+        </View>
+      </View>
 
     </ScreenContainer>
   );
@@ -208,10 +262,10 @@ const buttonStyles = StyleSheet.create({
 
 
 export const Routes = ({ navigation }) => {
+
   return (
     <ScreenContainer>
-      
-
+{/* 
       <FlatButton text="Day 1" onPress={() => navigation.push("Day1")} />
 
       <FlatButton text="Day 2" onPress={() => navigation.push("Day2")} />
@@ -238,7 +292,7 @@ export const Routes = ({ navigation }) => {
 
       <FlatButton text="Day 13" onPress={() => navigation.push("Day13")} />
 
-      <FlatButton text="Day 14" onPress={() => navigation.push("Day14")} />
+      <FlatButton text="Day 14" onPress={() => navigation.push("Day14")} /> */}
       
 
     </ScreenContainer>
