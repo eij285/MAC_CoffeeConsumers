@@ -3,6 +3,32 @@ import MapView, { Marker } from 'react-native-maps';
 import { View, Text, StyleSheet, Button, Image, TouchableOpacity, Dimensions } from "react-native";
 
 
+import { Location, Permissions } from 'expo';
+
+
+_getLocation = async () => {
+  const { status } = await Permissions.askAsync(Permissions.LOCATION);
+
+  if (status !== 'granted') {
+    console.log('PERMISSION NOT GRANTED!');
+
+    this.setState({
+      errorMessage: 'PERMISSION NOT GRANTED'
+    })
+  }
+
+  const location = await Location.getCurrentPositionAsync();
+
+  this.setState({
+    location: userLocation
+  })
+
+
+}
+
+
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -50,6 +76,10 @@ export const SignUp = ({ navigation }) => {
   );
 };
 
+
+
+
+
 export const MapPage = ({ navigation }) => {
   return (
     <ScreenContainer>
@@ -63,6 +93,7 @@ export const MapPage = ({ navigation }) => {
             latitudeDelta: 0.05,
             longitudeDelta: 0.05
           }}
+          showsUserLocation={true}
         />
       </View>
 
@@ -90,6 +121,32 @@ const mapStyles = StyleSheet.create({
     height: Dimensions.get('window').height,
   },
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
