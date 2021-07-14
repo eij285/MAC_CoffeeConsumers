@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MapView, { Marker } from 'react-native-maps';
 import { View, Text, TextInput, StyleSheet, Button, Image, TouchableOpacity, Dimensions } from "react-native";
 
@@ -43,6 +43,27 @@ export const LoadingScreen = ({ navigation }) => {
 
   
 export const SignUp = ({ navigation }) => {
+
+  // const [responseData, setResponseData] = useState([]);
+  // const data = { 
+  //   text1: 'hello',
+  //   text2: 'world'
+  // };
+
+  // useEffect(() => {
+  //   fetch('http://192.168.0.10:3000/post', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(data)
+  //   })
+  //   .then(resp => resp.json())
+  //   .then(newData => {
+  //     setResponseData(newData)
+  //   })
+  // }, []);
+
   return (
     <ScreenContainer>
       <View style={[styles.container, {
@@ -67,6 +88,9 @@ export const SignUp = ({ navigation }) => {
             onSubmitEditing={event => console.log('Text B has been submitted')}
           />
         </View>
+        {/* <View>
+          <Text>Response data '{responseData.text1} + {responseData.text2}'</Text>
+        </View> */}
 
         <View>
           <Button 
