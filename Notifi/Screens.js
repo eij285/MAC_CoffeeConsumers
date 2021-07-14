@@ -151,10 +151,10 @@ const buttonStyles = StyleSheet.create({
 
 
 export const Routes = ({ navigation }) => {
+
   return (
     <ScreenContainer>
-      
-
+{/* 
       <FlatButton text="Day 1" onPress={() => navigation.push("Day1")} />
 
       <FlatButton text="Day 2" onPress={() => navigation.push("Day2")} />
@@ -181,7 +181,7 @@ export const Routes = ({ navigation }) => {
 
       <FlatButton text="Day 13" onPress={() => navigation.push("Day13")} />
 
-      <FlatButton text="Day 14" onPress={() => navigation.push("Day14")} />
+      <FlatButton text="Day 14" onPress={() => navigation.push("Day14")} /> */}
       
 
     </ScreenContainer>
