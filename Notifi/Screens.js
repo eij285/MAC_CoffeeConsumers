@@ -1,9 +1,7 @@
-import React from "react";
-import { View, Text, StyleSheet, Button, Image, TouchableOpacity, TextInput } from "react-native";
+import React, { useEffect } from "react";
+import MapView, { Marker } from 'react-native-maps';
+import { View, Text, TextInput, StyleSheet, Button, Image, TouchableOpacity, Dimensions } from "react-native";
 
-
-//<Image source={require('./Notifi_Icon.jpg')} />
-//<Image source={require('./Notifi_Logo.jpg')} />
 
 const styles = StyleSheet.create({
   container: {
@@ -32,17 +30,17 @@ const ScreenContainer = ({ children }) => (
 
 
 export const LoadingScreen = ({ navigation }) => {
+  useEffect(() => {
+    setTimeout(() => { navigation.push("SignUp"); }, 2000);
+  }, []);
   return (
     <ScreenContainer>
       <Image source={require('./Notifi_Icon.jpg')} />
       <Image source={require('./Notifi_Logo.jpg')} />
-      <Button 
-        title="Sign Up" 
-        onPress={() => navigation.push("SignUp")} 
-      />
     </ScreenContainer>
   );
 };
+
   
 export const SignUp = ({ navigation }) => {
   return (
@@ -86,11 +84,43 @@ export const MapPage = ({ navigation }) => {
   return (
     <ScreenContainer>
       <Text>Map Page</Text>
+      <View style={mapStyles.container}>
+        <MapView 
+          style={mapStyles.map}
+          initialRegion={{
+            latitude: -33.865143,
+            longitude: 151.209900,
+            latitudeDelta: 0.05,
+            longitudeDelta: 0.05
+          }}
+        />
+      </View>
 
 
     </ScreenContainer>
   );
 };
+
+
+
+
+
+
+
+
+const mapStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  map: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  },
+});
+
 
 
 
