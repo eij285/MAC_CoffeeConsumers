@@ -99,7 +99,6 @@ const DaysList = () => (
   <Stack.Navigator headerMode="none" >
     <Stack.Screen name="Routes" component={Routes} />
 
-
     <Stack.Screen name="Day1" component={Day1} />
     <Stack.Screen name="Day2" component={Day2} />
     <Stack.Screen name="Day3" component={Day3} />
@@ -115,12 +114,8 @@ const DaysList = () => (
     <Stack.Screen name="Day13" component={Day13} />
     <Stack.Screen name="Day14" component={Day14} />
 
-
-
   </Stack.Navigator>
 );
-
-
 
 
 
@@ -150,12 +145,6 @@ export default () => (
 <Tabs.Screen name="MainPage" component={MainPage} />
 </Tabs.Navigator>
 */
-
-
-
-
-
-
 /*
 
 
