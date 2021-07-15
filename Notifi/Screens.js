@@ -192,52 +192,16 @@ export const SignUp = ({ navigation }) => {
 
 
 export const addressScreen = ({ route, navigation }) => {
-
   const { name } = route.params;
-  const [ address, setAddress ] = React.useState('');
 
+  const registerInData = (dataName) => {
+    
+    data = {
+      name: dataName,
+      lat: -33.8352145,
+      lon: 151.0581797,
+    }
 
-  const [ user, setUser ] = React.useState(0);
-
-
-  const [ state, setState ] = React.useState(0);
-
-
-  const [ data, setData ] = React.useState({
-    name: name,
-    lat: 0,
-    lon: 0
-  })
-
-
-
-  // function geocode(){
-  //   var location = {address};
-  //   axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
-  //     params:{
-  //       address:location,
-  //       key: 'AIzaSyDC4zHl0R8b2Tj0GjSdS3pqQTegcGUyj_g'
-  //     }
-  //   })
-  //   .then(function(response){
-  
-  //     console.log(response);
-  
-  //     //console.log(response.data.results[0].formatted_address);
-  
-  //   })
-  //   .catch(function(error){
-  //     console.log(error);
-  //   });
-  
-  // }
-  
-
-
-  useEffect(() => {
-
-    console.log('use Effect wiughseoiru')
-    // Giving data
     fetch('http://192.168.0.10:3000/register', {
       method: 'POST',
       headers: {
@@ -245,19 +209,7 @@ export const addressScreen = ({ route, navigation }) => {
       },
       body: JSON.stringify(data)
     })
-
-    // Getting user ID
-    .then(resp => resp.json())
-    .then(newData => {
-      setUser(newData)
-    })
-
-    // geocode();
-
-  }, [state]);
-
-
-
+  }
 
   return (
     <ScreenContainer>
@@ -267,22 +219,9 @@ export const addressScreen = ({ route, navigation }) => {
           <TextInput
             style={{height: 40, fontSize: 18}}
             placeholder="Tap to start typing"
-
-            onChangeText={ text => setAddress(text) }
-
             onSubmitEditing={() => {
-
-
-
-              console.log('sfbhsedfhgb'); 
-              setState(1);
-
-              // Change user ID and give it to main page (map, route, alerts)
-              
+              registerInData(name);
               navigation.push("MainPage")
-            
-            
-            
             }}
 
 
@@ -492,8 +431,8 @@ export const Routes = ({ navigation }) => {
   const simulate = () => {
     console.log('simulation started')
 
-    const lats = [-33.9049838, -33.8854194, -33.8881612, -33.8880195, -33.8893785, -33.9049838];
-    const lons = [150.9357761, 151.1231345, 151.1237816, 151.1234388, 151.1326044, 150.9357761];
+    const lats = [-33.8352145, -33.8352207, -33.8335497, -33.8340637, -33.8346338, -33.8352145];
+    const lons = [151.0581797, 151.0575254, 151.0570188, 151.0552415, 151.0569567, 151.0581797];
 
     for (let i = 0; i < 6; i++) {
       const data = {
@@ -528,9 +467,11 @@ export const Routes = ({ navigation }) => {
 
     return (
       <TouchableOpacity>
-        <View style={{paddingVertical: 10}}>
-          <Image source={require('./route_icon.png')}/>
-          <Text>{item.date}</Text>
+        <View style={{paddingVertical: 20, marginBottom: 20, paddingHorizontal: 20, backgroundColor: '#C4C4C4', borderRadius: 12}}>
+          <Image
+            style={{height: 220, marginBottom: 10}}
+            source={require('./route_icon.png')}/>
+          <Text style={FLItemsStyles.textStyle}>{item.date}</Text>
         </View>
       </TouchableOpacity>
     )
@@ -538,6 +479,9 @@ export const Routes = ({ navigation }) => {
 
   return (
     <ScreenContainer>
+      <View>
+        <Text style={FLItemsStyles.title}>Your journeys</Text>
+      </View>
       <View style={styles.container}>
         <FlatList
           data = {routeData}
@@ -563,7 +507,7 @@ const EmptyFLStyles = StyleSheet.create({
   }
 })
 
-const FlatListItemsStyles = StyleSheet.create({
+const FLItemsStyles = StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -574,11 +518,22 @@ const FlatListItemsStyles = StyleSheet.create({
     marginHorizontal: 16,
   },
   title: {
-    fontSize: 32,
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 24,
+    lineHeight: 28,
+    textAlign: 'left',
+    marginTop: 40,
+    marginBottom: 20
   },
-  // emptyTextStyle: {
-  //   color: grey100
-  // }
+  textStyle: {
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 20,
+    lineHeight: 18,
+    textAlign: 'right',
+    paddingVertical: 10
+  }
 });
 
 
