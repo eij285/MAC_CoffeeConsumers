@@ -33,8 +33,14 @@ def routes_addCoords(u_id, lat, lon):
 
     # If today is empty or the last route is complete
     if not today or today[-1]['isComplete']:
+        key = len(today)
+
+        dateRepresentation = datetime.today().strftime('%d %B, %Y')
+
         today.append(
             {
+                'key': key,
+                'date': dateRepresentation,
                 'isComplete': False,
                 'route': [(homeLat, homeLon), coords]
             }
@@ -47,5 +53,12 @@ def routes_addCoords(u_id, lat, lon):
 
     return {}
 
-def routes_show():
-    pass
+def routes_show(u_id):
+    data = database.get_data()
+
+    date = datetime.today().strftime('%d/%m/%y')
+
+    if date in data['users'][u_id]['days']:
+        return data['users'][u_id]['days'][date]
+    else:
+        return []

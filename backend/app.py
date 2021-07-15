@@ -17,6 +17,7 @@ def store_data():
 
 @app.route('/register', methods=['POST'])
 def register_user():
+    print(database.get_data())
     payload = request.get_json()
     name = payload['name']
     lat = payload['lat']
@@ -33,11 +34,18 @@ def track_user():
 
 @app.route('/routes/display', methods=['POST'])
 def get_routes():
-    pass
+    payload = request.get_json()
+    u_id = payload['u_id']
+    return dumps(routes_show(u_id))
 
 @app.route('/routes/safe', methods=['POST'])
 def check_safe():
     pass
+
+@app.route('/reset', methods=['GET'])
+def reset():
+    database.reset_data()
+    return dumps({})
 
 @app.route('/post', methods=['POST'])
 def get_post():
@@ -50,6 +58,5 @@ def get_post():
 
 # Make sure to replace host=... with your internal ip address
 if __name__ == "__main__":
-    database.reset_data()
     store_data()
     app.run(host='192.168.0.10', port=3000, debug=True)

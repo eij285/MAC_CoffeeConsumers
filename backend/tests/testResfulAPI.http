@@ -4,26 +4,19 @@ Content-Type: application/json
 
 {
     "name": "Elijah Lee",
-    "lat": 0.1,
-    "lon": 0.1
+    "lat": -33.9049838,
+    "lon": 150.9357761
 }
 
 ###
 
-POST http://192.168.0.10:3000/register HTTP/1.1
+POST http://192.168.0.10:3000/routes/display HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Elijah Lee",
-    "lat": 0.1,
-    "lon": 0.1
+    "u_id": 0
 }
 
-POST http://192.168.0.10:3000/track
-Content-Type: application/json
+###
 
-{
-    "u_id": 0,
-    "lat": 3.2,
-    "lon": 8.5
-}
+GET http://192.168.0.10:3000/reset HTTP/1.1

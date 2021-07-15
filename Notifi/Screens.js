@@ -209,35 +209,56 @@ export const Routes = ({ navigation }) => {
   //   u_id: 0
   // }
 
-  const [routeData, setRoute] = useState([
-    { date: '15/07/21', key: '1' },
-    { date: '16/07/21', key: '2' },
-    { date: '17/07/21', key: '3' },
-    { date: '18/07/21', key: '4' },
-    { date: '19/07/21', key: '5' },
-    { date: '20/07/21', key: '6' },
-    { date: '21/07/21', key: '7' },
-    { date: '22/07/21', key: '8' }
-  ])
+  const [routeData, setRouteData] = useState([])
 
-  // useEffect(() => {
-  //   fetch('http://192.168.0.10:3000/routes/display', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(data)
-  //   })
-  //   .then(resp => resp.json())
-  //   .then(newData => {
-  //     setRouteData(newData)
-  //   })
-  // }, []);
+  useEffect(() => {
+    fetch('http://192.168.0.10:3000/routes/display', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(
+        { u_id: 0 } // hard-coded
+      )
+    })
+    .then(resp => resp.json())
+    .then(newData => {
+      setRouteData(newData)
+    })
+  }, []);
+
+  // Simulation of travelling
+  const simulate = () => {
+    console.log('simulation started')
+
+    const lats = [-33.9049838, -33.8854194, -33.8881612, -33.8880195, -33.8893785, -33.9049838];
+    const lons = [150.9357761, 151.1231345, 151.1237816, 151.1234388, 151.1326044, 150.9357761];
+
+    for (let i = 0; i < 6; i++) {
+      const data = {
+        u_id: 0,
+        lat: lats[i],
+        lon: lons[i]
+      }
+
+      fetch('http://192.168.0.10:3000/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+    }
+  }
 
   const ListEmptyComponent = () => {
     return (
       <View style={{paddingVertical: 200}}>
         <Text style={EmptyFLStyles.textStyle}>No routes to show.</Text>
+        <Button
+          title="Simulate"
+          onPress={() => simulate()}
+        />
       </View>
     )
   };
@@ -246,7 +267,10 @@ export const Routes = ({ navigation }) => {
 
     return (
       <TouchableOpacity>
-        <Text>{item.date}</Text>
+        <View style={{paddingVertical: 10}}>
+          <Image source={require('./route_icon.png')}/>
+          <Text>{item.date}</Text>
+        </View>
       </TouchableOpacity>
     )
   }
@@ -255,7 +279,7 @@ export const Routes = ({ navigation }) => {
     <ScreenContainer>
       <View style={styles.container}>
         <FlatList
-          data = {routeData} //routeData
+          data = {routeData}
           renderItem={renderItem}
           keyExtractor={(item) => String(item.key)}
           ListEmptyComponent={ListEmptyComponent}/>
