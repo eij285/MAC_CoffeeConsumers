@@ -53,25 +53,7 @@ export const LoadingScreen = ({ navigation }) => {
   
 export const SignUp = ({ navigation }) => {
 
-  // const [responseData, setResponseData] = useState([]);
-  // const data = { 
-  //   text1: 'hello',
-  //   text2: 'world'
-  // };
 
-  // useEffect(() => {
-  //   fetch('http://192.168.0.10:3000/post', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(data)
-  //   })
-  //   .then(resp => resp.json())
-  //   .then(newData => {
-  //     setResponseData(newData)
-  //   })
-  // }, []);
 
   const [name, setName] = React.useState('');
 
@@ -107,10 +89,6 @@ export const SignUp = ({ navigation }) => {
           <Text>Response data '{responseData.text1} + {responseData.text2}'</Text>
         </View> */}
 
-
-
-
-
           <View>
           {/* <Button 
               title="Continue" 
@@ -124,140 +102,27 @@ export const SignUp = ({ navigation }) => {
 };
 
 
-
-//const MainPage = () => {navigation.push("MainPage")}
-
-
-// export const addressScreen = ({ route, navigation }) => {
-
-//   const { name } = route.params;
-//   const [ address, setAddress ] = React.useState('');
-
-//   return (
-//     <ScreenContainer>
-//         <View style={{paddingVertical: 10}}>
-//           <Text style={styles.registerTextStyle}>Hi { name },</Text>
-//           <Text style={styles.registerTextStyle}>what's your address?</Text>
-//           <TextInput
-//             style={{height: 40, fontSize: 18}}
-//             placeholder="Tap to start typing"
-
-//             onChangeText={ text => setAddress(text) }
-
-//             onSubmitEditing={() => {
-
-
-
-//               console.log('sfbhsedfhgb'); 
-              
-//               navigation.push("MainPage")
-            
-            
-            
-//             }}
-
-
-
-//           />
-//         </View>
-//     </ScreenContainer>
-//   );
-// };
-
-
-
-
-
-
-
-
-
-// Geocoder.geocodeAddress(address).then(res => {
-//     setData(lat: res.lat)
-//     setData(lon: res.lon)
-// })
-// .catch(err => console.log(err))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const addressScreen = ({ route, navigation }) => {
-
   const { name } = route.params;
-  const [ address, setAddress ] = React.useState('');
 
-
-  const [ user, setUser ] = React.useState(0);
-
-
-  const [ state, setState ] = React.useState(0);
-
-
-  const [ data, setData ] = React.useState({
-    name: name,
-    lat: 0,
-    lon: 0
-  })
-
-
-
-  // function geocode(){
-  //   var location = {address};
-  //   axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
-  //     params:{
-  //       address:location,
-  //       key: 'AIzaSyDC4zHl0R8b2Tj0GjSdS3pqQTegcGUyj_g'
-  //     }
-  //   })
-  //   .then(function(response){
-  
-  //     console.log(response);
-  
-  //     //console.log(response.data.results[0].formatted_address);
-  
-  //   })
-  //   .catch(function(error){
-  //     console.log(error);
-  //   });
-  
-  // }
-  
-
-
-  useEffect(() => {
+  const registerInData = (dataName) => {
+    
+    data = {
+      name: dataName,
+      lat: -33.8352145,
+      lon: 151.0581797,
+    }
 
     console.log('use Effect wiughseoiru')
     // Giving data
-    fetch('http://192.168.1.155:3000/register', {
+    fetch('http://192.168.0.10:3000/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
     })
-
-    // Getting user ID
-    .then(resp => resp.json())
-    .then(newData => {
-      setUser(newData)
-    })
-
-    // geocode();
-
-  }, [state]);
-
-
-
+  }
 
   return (
     <ScreenContainer>
@@ -267,22 +132,9 @@ export const addressScreen = ({ route, navigation }) => {
           <TextInput
             style={{height: 40, fontSize: 18}}
             placeholder="Tap to start typing"
-
-            onChangeText={ text => setAddress(text) }
-
             onSubmitEditing={() => {
-
-
-
-              console.log('sfbhsedfhgb'); 
-              setState(1);
-
-              // Change user ID and give it to main page (map, route, alerts)
-              
+              registerInData(name);
               navigation.push("MainPage")
-            
-            
-            
             }}
 
 
@@ -292,32 +144,6 @@ export const addressScreen = ({ route, navigation }) => {
     </ScreenContainer>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 export const MapPage = ({ navigation }) => {
@@ -374,12 +200,6 @@ export const MapPage = ({ navigation }) => {
 };
 
 
-
-
-
-
-
-
 const mapStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -392,22 +212,6 @@ const mapStyles = StyleSheet.create({
     height: Dimensions.get('window').height,
   },
 });
-
-
-
-
-// $.getJSON('https://data.nsw.gov.au/data/dataset/0a52e6c1-bc0b-48af-8b45-d791a6d8e289/resource/f3a28eed-8c2a-437b-8ac1-2dab3cf760f9/download/covid-case-locations-20210714-1900.json', function(data) {
-//   console.log("COVID-19 current case locations.")
-//   console.log(data);
-// });
-
-
-
-
-
-
-
-
 
 
 export const Alerts = ({ navigation }) => {
@@ -454,15 +258,6 @@ const buttonStyles = StyleSheet.create({
 })
 
 
-
-
-
-
-
-
-
-
-
 export const Routes = ({ navigation }) => {
 
   // const [routeData, setRouteData] = useState([]);
@@ -492,8 +287,8 @@ export const Routes = ({ navigation }) => {
   const simulate = () => {
     console.log('simulation started')
 
-    const lats = [-33.9049838, -33.8854194, -33.8881612, -33.8880195, -33.8893785, -33.9049838];
-    const lons = [150.9357761, 151.1231345, 151.1237816, 151.1234388, 151.1326044, 150.9357761];
+    const lats = [-33.8352145, -33.8352207, -33.8335497, -33.8340637, -33.8346338, -33.8352145];
+    const lons = [151.0581797, 151.0575254, 151.0570188, 151.0552415, 151.0569567, 151.0581797];
 
     for (let i = 0; i < 6; i++) {
       const data = {
@@ -527,12 +322,13 @@ export const Routes = ({ navigation }) => {
   const renderItem = ({item}) => {
 
     return (
-      <TouchableOpacity
-        onPress={navigation.push("Day1Route1")}
-      >
-        <View style={{paddingVertical: 10}}>
-          <Image source={require('./route_icon.png')}/>
-          <Text>{item.date}</Text>
+      <TouchableOpacity>
+        <View style={{paddingVertical: 20, marginBottom: 20, paddingHorizontal: 20, backgroundColor: '#C4C4C4', borderRadius: 12}}>
+          <Image
+            style={{height: 220, marginBottom: 10}}
+            source={require('./route_icon.png')}/>
+          
+          <Text style={FLItemsStyles.textStyle}>{item.date}</Text>
         </View>
       </TouchableOpacity>
     )
@@ -540,6 +336,9 @@ export const Routes = ({ navigation }) => {
 
   return (
     <ScreenContainer>
+      <View>
+        <Text style={FLItemsStyles.title}>Your journeys</Text>
+      </View>
       <View style={styles.container}>
         <FlatList
           data = {routeData}
@@ -565,7 +364,7 @@ const EmptyFLStyles = StyleSheet.create({
   }
 })
 
-const FlatListItemsStyles = StyleSheet.create({
+const FLItemsStyles = StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -576,19 +375,23 @@ const FlatListItemsStyles = StyleSheet.create({
     marginHorizontal: 16,
   },
   title: {
-    fontSize: 32,
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 24,
+    lineHeight: 28,
+    textAlign: 'left',
+    marginTop: 40,
+    marginBottom: 20
   },
-  // emptyTextStyle: {
-  //   color: grey100
-  // }
+  textStyle: {
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 20,
+    lineHeight: 18,
+    textAlign: 'right',
+    paddingVertical: 10
+  }
 });
-
-
-
-
-
-
-
 
 
 
@@ -605,243 +408,3 @@ export const Day1Route1 = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export const Day1 = () => {
-  return (
-    <ScreenContainer>
-      <Text>Day 1</Text>
-    </ScreenContainer>
-  );
-};
-
-export const Day2 = () => {
-  return (
-    <ScreenContainer>
-      <Text>Day 2</Text>
-    </ScreenContainer>
-  );
-};
-
-export const Day3 = () => {
-  return (
-    <ScreenContainer>
-      <Text>Day 3</Text>
-    </ScreenContainer>
-  );
-};
-
-export const Day4 = () => {
-  return (
-    <ScreenContainer>
-      <Text>Day 4</Text>
-    </ScreenContainer>
-  );
-};
-
-export const Day5 = () => {
-  return (
-    <ScreenContainer>
-      <Text>Day 5</Text>
-    </ScreenContainer>
-  );
-};
-export const Day6 = () => {
-  return (
-    <ScreenContainer>
-      <Text>Day 6</Text>
-    </ScreenContainer>
-  );
-};
-export const Day7 = () => {
-  return (
-    <ScreenContainer>
-      <Text>Day 7</Text>
-    </ScreenContainer>
-  );
-};
-export const Day8 = () => {
-  return (
-    <ScreenContainer>
-      <Text>Day 8</Text>
-    </ScreenContainer>
-  );
-};
-export const Day9 = () => {
-  return (
-    <ScreenContainer>
-      <Text>Day 9</Text>
-    </ScreenContainer>
-  );
-};
-export const Day10 = () => {
-  return (
-    <ScreenContainer>
-      <Text>Day 10</Text>
-    </ScreenContainer>
-  );
-};
-export const Day11 = () => {
-  return (
-    <ScreenContainer>
-      <Text>Day 11</Text>
-    </ScreenContainer>
-  );
-};
-export const Day12 = () => {
-  return (
-    <ScreenContainer>
-      <Text>Day 12</Text>
-    </ScreenContainer>
-  );
-};
-export const Day13 = () => {
-  return (
-    <ScreenContainer>
-      <Text>Day 13</Text>
-    </ScreenContainer>
-  );
-};
-export const Day14 = () => {
-  return (
-    <ScreenContainer>
-      <Text>Day 14</Text>
-    </ScreenContainer>
-  );
-};
-
-
-
-
-
-
-export const Home = ({ navigation }) => (
-  <ScreenContainer>
-    <Text>Master List Screen</Text>
-
-  </ScreenContainer>
-);
-
-
-export const Profile = ({ navigation }) => {
-
-  return (
-    <ScreenContainer>
-      <Text>Profile Screen</Text>
-
-    </ScreenContainer>
-  );
-};
-
-/*
-
-
-export const Home = ({ navigation }) => (
-  <ScreenContainer>
-    <Text>Master List Screen</Text>
-    <Button
-      title="React Native by Example"
-      onPress={() =>
-        navigation.push("Details", { name: "React Native by Example " })
-      }
-    />
-    <Button
-      title="React Native School"
-      onPress={() =>
-        navigation.push("Details", { name: "React Native School" })
-      }
-    />
-    <Button title="Drawer" onPress={() => navigation.toggleDrawer()} />
-  </ScreenContainer>
-);
-
-export const Details = ({ route }) => (
-  <ScreenContainer>
-    <Text>Details Screen</Text>
-    {route.params.name && <Text>{route.params.name}</Text>}
-  </ScreenContainer>
-);
-
-export const Search = ({ navigation }) => (
-  <ScreenContainer>
-    <Text>Search Screen</Text>
-    <Button title="Search 2" onPress={() => navigation.push("Search2")} />
-    <Button
-      title="React Native School"
-      onPress={() => {
-        navigation.navigate("Home", {
-          screen: "Details",
-          params: { name: "React Native School" }
-        });
-      }}
-    />
-  </ScreenContainer>
-);
-
-export const Search2 = () => (
-  <ScreenContainer>
-    <Text>Search2 Screen</Text>
-  </ScreenContainer>
-);
-
-export const Profile = ({ navigation }) => {
-  const { signOut } = React.useContext(AuthContext);
-
-  return (
-    <ScreenContainer>
-      <Text>Profile Screen</Text>
-      <Button title="Drawer" onPress={() => navigation.toggleDrawer()} />
-      <Button title="Sign Out" onPress={() => signOut()} />
-    </ScreenContainer>
-  );
-};
-
-export const Splash = () => (
-  <ScreenContainer>
-    <Text>Loading...</Text>
-  </ScreenContainer>
-);
-
-export const SignIn = ({ navigation }) => {
-  const { signIn } = React.useContext(AuthContext);
-
-  return (
-    <ScreenContainer>
-      <Text>Sign In Screen</Text>
-      <Button title="Sign In" onPress={() => signIn()} />
-      <Button
-        title="Create Account"
-        onPress={() => navigation.push("CreateAccount")}
-      />
-    </ScreenContainer>
-  );
-};
-
-export const CreateAccount = () => {
-  const { signUp } = React.useContext(AuthContext);
-
-  return (
-    <ScreenContainer>
-      <Text>Create Account Screen</Text>
-      <Button title="Sign Up" onPress={() => signUp()} />
-    </ScreenContainer>
-  );
-};
-
-*/
