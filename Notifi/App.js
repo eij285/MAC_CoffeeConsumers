@@ -14,7 +14,7 @@ import FlatButton from './Screens';
 
 
 import { LoadingScreen, SignUp, MapPage, Routes, Alerts, addressScreen,
-  Day1, 
+  Day1, Day1Route1,
   Day2,
   Day3,
   Day4,
@@ -97,15 +97,14 @@ screenOptions={({route}) => ({
 
 
 
-
-
-
-
 const DaysList = () => (
   <Stack.Navigator headerMode="none" >
     <Stack.Screen name="Routes" component={Routes} />
 
     <Stack.Screen name="Day1" component={Day1} />
+
+    <Stack.Screen name="Day1Route1" component={Day1Route1} />
+
     <Stack.Screen name="Day2" component={Day2} />
     <Stack.Screen name="Day3" component={Day3} />
     <Stack.Screen name="Day4" component={Day4} />
@@ -119,6 +118,9 @@ const DaysList = () => (
     <Stack.Screen name="Day12" component={Day12} />
     <Stack.Screen name="Day13" component={Day13} />
     <Stack.Screen name="Day14" component={Day14} />
+
+
+
 
   </Stack.Navigator>
 );

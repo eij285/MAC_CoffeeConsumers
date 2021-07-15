@@ -238,7 +238,7 @@ export const addressScreen = ({ route, navigation }) => {
 
     console.log('use Effect wiughseoiru')
     // Giving data
-    fetch('http://192.168.0.10:3000/register', {
+    fetch('http://192.168.1.155:3000/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -473,7 +473,7 @@ export const Routes = ({ navigation }) => {
   const [routeData, setRouteData] = useState([])
 
   useEffect(() => {
-    fetch('http://192.168.0.10:3000/routes/display', {
+    fetch('http://192.168.1.155:3000/routes/display', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -502,7 +502,7 @@ export const Routes = ({ navigation }) => {
         lon: lons[i]
       }
 
-      fetch('http://192.168.0.10:3000/track', {
+      fetch('http://192.168.1.155:3000/track', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -527,7 +527,9 @@ export const Routes = ({ navigation }) => {
   const renderItem = ({item}) => {
 
     return (
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={navigation.push("Day1Route1")}
+      >
         <View style={{paddingVertical: 10}}>
           <Image source={require('./route_icon.png')}/>
           <Text>{item.date}</Text>
@@ -590,7 +592,16 @@ const FlatListItemsStyles = StyleSheet.create({
 
 
 
-
+export const Day1Route1 = () => {
+  return (
+    <ScreenContainer>
+      <View style={{paddingVertical: 10}}>
+          <Image source={require('./route_icon.png')}/>
+          <Text></Text>
+        </View>
+    </ScreenContainer>
+  );
+};
 
 
 
