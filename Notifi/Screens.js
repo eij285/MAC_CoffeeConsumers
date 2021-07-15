@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MapView, { Marker } from 'react-native-maps';
 import { View, Text, TextInput, StyleSheet, Button, Image, TouchableOpacity, Dimensions } from "react-native";
+import { FlatList } from "react-native";
 
 
 const styles = StyleSheet.create({
@@ -201,46 +202,123 @@ const buttonStyles = StyleSheet.create({
 
 
 
-
-
-
 export const Routes = ({ navigation }) => {
+
+  // const [routeData, setRouteData] = useState([]);
+  // const data = {
+  //   u_id: 0
+  // }
+
+  const [routeData, setRouteData] = useState([])
+
+  useEffect(() => {
+    fetch('http://192.168.0.10:3000/routes/display', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(
+        { u_id: 0 } // hard-coded
+      )
+    })
+    .then(resp => resp.json())
+    .then(newData => {
+      setRouteData(newData)
+    })
+  }, []);
+
+  // Simulation of travelling
+  const simulate = () => {
+    console.log('simulation started')
+
+    const lats = [-33.9049838, -33.8854194, -33.8881612, -33.8880195, -33.8893785, -33.9049838];
+    const lons = [150.9357761, 151.1231345, 151.1237816, 151.1234388, 151.1326044, 150.9357761];
+
+    for (let i = 0; i < 6; i++) {
+      const data = {
+        u_id: 0,
+        lat: lats[i],
+        lon: lons[i]
+      }
+
+      fetch('http://192.168.0.10:3000/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+    }
+  }
+
+  const ListEmptyComponent = () => {
+    return (
+      <View style={{paddingVertical: 200}}>
+        <Text style={EmptyFLStyles.textStyle}>No routes to show.</Text>
+        <Button
+          title="Simulate"
+          onPress={() => simulate()}
+        />
+      </View>
+    )
+  };
+
+  const renderItem = ({item}) => {
+
+    return (
+      <TouchableOpacity>
+        <View style={{paddingVertical: 10}}>
+          <Image source={require('./route_icon.png')}/>
+          <Text>{item.date}</Text>
+        </View>
+      </TouchableOpacity>
+    )
+  }
 
   return (
     <ScreenContainer>
-{/* 
-      <FlatButton text="Day 1" onPress={() => navigation.push("Day1")} />
-
-      <FlatButton text="Day 2" onPress={() => navigation.push("Day2")} />
-
-      <FlatButton text="Day 3" onPress={() => navigation.push("Day3")} />
-
-      <FlatButton text="Day 4" onPress={() => navigation.push("Day4")} />
-
-      <FlatButton text="Day 5" onPress={() => navigation.push("Day5")} />
-      
-      <FlatButton text="Day 6" onPress={() => navigation.push("Day6")} />
-
-      <FlatButton text="Day 7" onPress={() => navigation.push("Day7")} />
-
-      <FlatButton text="Day 8" onPress={() => navigation.push("Day8")} />
-
-      <FlatButton text="Day 9" onPress={() => navigation.push("Day9")} />
-
-      <FlatButton text="Day 10" onPress={() => navigation.push("Day10")} />
-
-      <FlatButton text="Day 11" onPress={() => navigation.push("Day11")} />
-
-      <FlatButton text="Day 12" onPress={() => navigation.push("Day12")} />
-
-      <FlatButton text="Day 13" onPress={() => navigation.push("Day13")} />
-
-      <FlatButton text="Day 14" onPress={() => navigation.push("Day14")} /> */}
-      
-
+      <View style={styles.container}>
+        <FlatList
+          data = {routeData}
+          renderItem={renderItem}
+          keyExtractor={(item) => String(item.key)}
+          ListEmptyComponent={ListEmptyComponent}/>
+      </View>
     </ScreenContainer>
   );
 };
+
+const EmptyFLStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff"
+  },
+  textStyle: {
+    fontSize: 16,
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+  }
+})
+
+const FlatListItemsStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 32,
+  },
+  // emptyTextStyle: {
+  //   color: grey100
+  // }
+});
 
 
 

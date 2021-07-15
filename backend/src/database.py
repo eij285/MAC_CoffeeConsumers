@@ -9,7 +9,6 @@ from os import path
 # DATA structure.
 
 if path.isfile("database.p"):
-    print("UNPICKLE")
     DATA = pickle.load(open("database.p", "rb"))
 else:
     DATA = {
