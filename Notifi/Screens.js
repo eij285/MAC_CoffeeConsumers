@@ -268,7 +268,7 @@ export const Routes = ({ navigation }) => {
   const [routeData, setRouteData] = useState([])
 
   useEffect(() => {
-    fetch('http://192.168.1.155:3000/routes/display', {
+    fetch('http://192.168.0.10:3000/routes/display', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -297,7 +297,7 @@ export const Routes = ({ navigation }) => {
         lon: lons[i]
       }
 
-      fetch('http://192.168.1.155:3000/track', {
+      fetch('http://192.168.0.10:3000/track', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
