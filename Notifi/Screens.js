@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
-import MapView, { Marker } from 'react-native-maps';
-import { View, Text, TextInput, StyleSheet, Button, Image, TouchableOpacity, Dimensions } from "react-native";
-import { FlatList } from "react-native";
+import MapView, { Callout, Marker } from 'react-native-maps';
+import { View, Text, TextInput, StyleSheet, Button, Image, TouchableOpacity, Dimensions, FlatList } from "react-native";
+import Geocoder from 'react-native-geocoder';
+import { set } from "react-native-reanimated";
+import geocoder from "react-native-geocoder/js/geocoder";
+
+
+const axios = require('axios').default;
+
 
 
 const styles = StyleSheet.create({
@@ -31,9 +37,11 @@ const ScreenContainer = ({ children }) => (
 
 
 export const LoadingScreen = ({ navigation }) => {
+
   useEffect(() => {
     setTimeout(() => { navigation.push("SignUp"); }, 2000);
   }, []);
+
   return (
     <ScreenContainer>
       <Image source={require('./Notifi_Icon.jpg')} />
@@ -65,6 +73,10 @@ export const SignUp = ({ navigation }) => {
   //   })
   // }, []);
 
+  const [name, setName] = React.useState('');
+
+  console.log(name)
+
   return (
     <ScreenContainer>
       <View style={[styles.container, {
@@ -77,35 +89,239 @@ export const SignUp = ({ navigation }) => {
           <TextInput
             style={{height: 40, fontSize: 18}}
             placeholder="Tap to start typing"
-            onSubmitEditing={event => console.log('Text A has been submitted')}
+            onChangeText={ text => setName(text) }
+
+
+            onSubmitEditing={() => {
+              // alert(`Your name is: ${name}`)
+
+              navigation.navigate('addressScreen', {
+                    name: name,
+                  });
+            }}
+            
           />
         </View>
-        <View style={{paddingVertical: 10}}>
-          <Text style={styles.registerTextStyle}>Hi insertName,</Text>
-          <Text style={styles.registerTextStyle}>what's your address?</Text>
-          <TextInput
-            style={{height: 40, fontSize: 18}}
-            placeholder="Tap to start typing"
-            onSubmitEditing={event => console.log('Text B has been submitted')}
-          />
-        </View>
+
         {/* <View>
           <Text>Response data '{responseData.text1} + {responseData.text2}'</Text>
         </View> */}
 
-        <View>
-          <Button 
+
+
+
+
+          <View>
+          {/* <Button 
               title="Continue" 
               onPress={() => navigation.push("MainPage")} 
-          />
+          /> */}
         </View>
-      </View>
+      </View>  
 
     </ScreenContainer>
   );
 };
 
+
+
+//const MainPage = () => {navigation.push("MainPage")}
+
+
+// export const addressScreen = ({ route, navigation }) => {
+
+//   const { name } = route.params;
+//   const [ address, setAddress ] = React.useState('');
+
+//   return (
+//     <ScreenContainer>
+//         <View style={{paddingVertical: 10}}>
+//           <Text style={styles.registerTextStyle}>Hi { name },</Text>
+//           <Text style={styles.registerTextStyle}>what's your address?</Text>
+//           <TextInput
+//             style={{height: 40, fontSize: 18}}
+//             placeholder="Tap to start typing"
+
+//             onChangeText={ text => setAddress(text) }
+
+//             onSubmitEditing={() => {
+
+
+
+//               console.log('sfbhsedfhgb'); 
+              
+//               navigation.push("MainPage")
+            
+            
+            
+//             }}
+
+
+
+//           />
+//         </View>
+//     </ScreenContainer>
+//   );
+// };
+
+
+
+
+
+
+
+
+
+// Geocoder.geocodeAddress(address).then(res => {
+//     setData(lat: res.lat)
+//     setData(lon: res.lon)
+// })
+// .catch(err => console.log(err))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const addressScreen = ({ route, navigation }) => {
+
+  const { name } = route.params;
+  const [ address, setAddress ] = React.useState('');
+
+
+  const [ user, setUser ] = React.useState(0);
+
+
+  const [ state, setState ] = React.useState(0);
+
+
+  const [ data, setData ] = React.useState({
+    name: name,
+    lat: 0,
+    lon: 0
+  })
+
+
+
+  // function geocode(){
+  //   var location = {address};
+  //   axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
+  //     params:{
+  //       address:location,
+  //       key: 'AIzaSyDC4zHl0R8b2Tj0GjSdS3pqQTegcGUyj_g'
+  //     }
+  //   })
+  //   .then(function(response){
+  
+  //     console.log(response);
+  
+  //     //console.log(response.data.results[0].formatted_address);
+  
+  //   })
+  //   .catch(function(error){
+  //     console.log(error);
+  //   });
+  
+  // }
+  
+
+
+  useEffect(() => {
+
+    console.log('use Effect wiughseoiru')
+    // Giving data
+    fetch('http://192.168.0.10:3000/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+
+    // Getting user ID
+    .then(resp => resp.json())
+    .then(newData => {
+      setUser(newData)
+    })
+
+    // geocode();
+
+  }, [state]);
+
+
+
+
+  return (
+    <ScreenContainer>
+        <View style={{paddingVertical: 10}}>
+          <Text style={styles.registerTextStyle}>Hi { name },</Text>
+          <Text style={styles.registerTextStyle}>what's your address?</Text>
+          <TextInput
+            style={{height: 40, fontSize: 18}}
+            placeholder="Tap to start typing"
+
+            onChangeText={ text => setAddress(text) }
+
+            onSubmitEditing={() => {
+
+
+
+              console.log('sfbhsedfhgb'); 
+              setState(1);
+
+              // Change user ID and give it to main page (map, route, alerts)
+              
+              navigation.push("MainPage")
+            
+            
+            
+            }}
+
+
+
+          />
+        </View>
+    </ScreenContainer>
+  );
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const MapPage = ({ navigation }) => {
+
   return (
     <ScreenContainer>
       <Text>Map Page</Text>
@@ -118,7 +334,38 @@ export const MapPage = ({ navigation }) => {
             latitudeDelta: 0.05,
             longitudeDelta: 0.05
           }}
-        />
+          showsUserLocation={true}
+          showsMyLocationButton={true}
+          provider={"google"}
+          mapPadding={{top:0, right:0, left:0, bottom:50}}
+        >
+
+
+          <Marker 
+            coordinate={{ latitude: -33.8332929, longitude: 151.0571947 }} 
+          >
+            <Callout>
+              <View>
+                <Text>
+                  Venue: Newington Marketplace 
+                  {"\n"}
+                  Address: 1 Ave of Europe, Newington
+                  {"\n"}
+                  Date: Monday 12 July 2021
+                  {"\n"}
+                  Time: 12pm to 12:30pm
+                  {"\n"}
+                  Alert: Get tested immediately. 
+                  {"\n"}
+                  Self-isolate until you get a negative result.
+                </Text>
+              </View>
+            </Callout>
+          </Marker>
+
+
+
+        </MapView>
       </View>
 
 
@@ -145,6 +392,20 @@ const mapStyles = StyleSheet.create({
     height: Dimensions.get('window').height,
   },
 });
+
+
+
+
+// $.getJSON('https://data.nsw.gov.au/data/dataset/0a52e6c1-bc0b-48af-8b45-d791a6d8e289/resource/f3a28eed-8c2a-437b-8ac1-2dab3cf760f9/download/covid-case-locations-20210714-1900.json', function(data) {
+//   console.log("COVID-19 current case locations.")
+//   console.log(data);
+// });
+
+
+
+
+
+
 
 
 

@@ -13,7 +13,7 @@ import FlatButton from './Screens';
 
 
 
-import { LoadingScreen, SignUp, MapPage, Routes, Alerts, 
+import { LoadingScreen, SignUp, MapPage, Routes, Alerts, addressScreen,
   Day1, 
   Day2,
   Day3,
@@ -40,6 +40,7 @@ const IntroPage = () => (
   <Stack.Navigator headerMode="none" >
     <Stack.Screen name="LoadingScreen" component={LoadingScreen} />
     <Stack.Screen name="SignUp" component={SignUp} />
+    <Stack.Screen name="addressScreen" component={addressScreen} />
     <Stack.Screen name="MainPage" component={MainPageTabs} />
   </Stack.Navigator>
 );
@@ -57,9 +58,12 @@ const MainPageTabs = () => (
   >
     <Tabs.Screen name="Map" component={MapPage} />
     <Tabs.Screen name="DaysList" component={DaysList} options={{ title: "Past Trips" }}/>
-    <Tabs.Screen name="Alerts" component={Alerts} />
+    {/* <Tabs.Screen name="Alerts" component={Alerts} /> */}
   </Tabs.Navigator>
 ); 
+
+
+
 
 
 
