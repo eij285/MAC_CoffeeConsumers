@@ -47,5 +47,5 @@ def routes_addCoords(u_id, lat, lon):
 
     return {}
 
-def showRoutes():
+def routes_show():
     pass

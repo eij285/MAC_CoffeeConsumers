@@ -3,7 +3,7 @@ from json import dumps
 import threading
 
 from src.auth import auth_register
-from src.routes import routes_addCoords
+from src.routes import routes_addCoords, routes_show
 from src import database
 
 app = Flask(__name__)
