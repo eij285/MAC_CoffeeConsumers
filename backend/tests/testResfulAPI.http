@@ -1,2 +1,29 @@
 
-http://192.168.0.10:3000/get
+POST http://192.168.0.10:3000/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Elijah Lee",
+    "lat": 0.1,
+    "lon": 0.1
+}
+
+###
+
+POST http://192.168.0.10:3000/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Elijah Lee",
+    "lat": 0.1,
+    "lon": 0.1
+}
+
+POST http://192.168.0.10:3000/track
+Content-Type: application/json
+
+{
+    "u_id": 0,
+    "lat": 3.2,
+    "lon": 8.5
+}
